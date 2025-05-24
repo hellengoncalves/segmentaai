@@ -32,6 +32,12 @@ df_nps_tran_implantacao = (
         F.col("Cód. Cliente").alias("cd_cliente"),
         F.col("Data da Resposta").alias("dt_resposta"),
         F.col("Nota NPS").alias("nota_nps"),
+        F.when(F.col('Nota NPS').isNull(), 'Não Avaliado')
+            .when(F.col('Nota NPS') <= 6, 'Detrator')
+            .when((F.col('Nota NPS') >= 7) & (F.col('Nota NPS') <= 8), 'Neutro')
+            .when(F.col('Nota NPS') >= 9, 'Promotor')
+            .otherwise('Não Avaliado')
+            .alias('classificacao_nps'),
         F.col("Nota Metodologia").alias("nota_metodologia"),
         F.col("Nota Gestao").alias("nota_gestao"),
         F.col("Nota Conhecimento").alias("nota_conhecimento"),
