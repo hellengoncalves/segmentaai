@@ -33,6 +33,12 @@ df_nps_relacional = (
         F.col("respondedAt").alias("dt_resposta"),
         F.lit('relacional').alias('categoria'),
         F.col("resposta_NPS").alias("resposta_nps"),
+        F.when(F.col('resposta_NPS').isNull(), 'Não Avaliado')
+            .when(F.col('resposta_NPS') <= 6, 'Detrator')
+            .when((F.col('resposta_NPS') >= 7) & (F.col('resposta_NPS') <= 8), 'Neutro')
+            .when(F.col('resposta_NPS') >= 9, 'Promotor')
+            .otherwise('Não Avaliado')
+            .alias('classificacao_nps'),
         F.col("resposta_unidade").alias("resposta_unidade"),
         F.col("Nota_SupTec_Agilidade").alias("nota_suporte_agilidade"),
         F.col("Nota_SupTec_Atendimento").alias("nota_suporte_atendimento"),
