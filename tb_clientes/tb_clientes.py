@@ -125,7 +125,7 @@ df_consolidado = (
         F.coalesce(F.col("c.ds_segmento"), F.lit('-')).alias("ds_segmento"),
         F.coalesce(F.col("c.ds_subsegmento"), F.lit('-')).alias("ds_subsegmento"),
         F.coalesce(F.col("c.vl_faixa_faturamento"), F.lit('-')).alias("vl_faixa_faturamento"),
-        F.coalesce(F.col("c.nm_pais"), F.lit('-')).alias("nm_pais"),
+        F.coalesce(F.col("c.nm_pais"), F.lit('-')).alias("id_pais"),
         F.coalesce(F.col("c.nm_uf"), F.lit('-')).alias("nm_uf"),
     )
 )
