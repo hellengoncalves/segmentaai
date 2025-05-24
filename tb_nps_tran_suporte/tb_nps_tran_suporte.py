@@ -32,6 +32,12 @@ df_nps_tran_suporte = (
         F.col("cliente").alias("cd_cliente"),
         F.col("ticket").alias("ticket"),
         F.col("resposta_NPS").alias("resposta_nps"),
+        F.when(F.col('resposta_NPS').isNull(), 'Não Avaliado')
+            .when(F.col('resposta_NPS') <= 6, 'Detrator')
+            .when((F.col('resposta_NPS') >= 7) & (F.col('resposta_NPS') <= 8), 'Neutro')
+            .when(F.col('resposta_NPS') >= 9, 'Promotor')
+            .otherwise('Não Avaliado')
+            .alias('classificacao_nps'),
         F.col("grupo_NPS").alias("grupo_nps"),
         F.col("Nota_ConhecimentoAgente").alias("nota_conhecimento_agente"),
         F.col("Nota_Solucao").alias("nota_solucao"),

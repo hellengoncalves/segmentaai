@@ -36,7 +36,13 @@ df_nps_tran_onboarding = (
         F.col("- Duração do tempo na realização da reunião de Onboarding;").alias("duracao_reuniao_onboarding"),
         F.col("- Clareza no acesso aos canais de comunicação da TOTVS;").alias("clareza_canais_comunicacao"),
         F.col("- Clareza nas informações em geral transmitidas pelo CS que lhe atendeu no Onboarding;").alias("clareza_informacoes_cs"),
-        F.col("- Expectativas atendidas no Onboarding da TOTVS.").alias("expectativas_atendidas_onboarding")
+        F.col("- Expectativas atendidas no Onboarding da TOTVS.").alias("expectativas_atendidas_onboarding"),
+        F.when(F.col('- Expectativas atendidas no Onboarding da TOTVS.').isNull(), 'Não Avaliado')
+            .when(F.col('- Expectativas atendidas no Onboarding da TOTVS.') <= 6, 'Detrator')
+            .when((F.col('- Expectativas atendidas no Onboarding da TOTVS.') >= 7) & (F.col('- Expectativas atendidas no Onboarding da TOTVS.') <= 8), 'Neutro')
+            .when(F.col('- Expectativas atendidas no Onboarding da TOTVS.') >= 9, 'Promotor')
+            .otherwise('Não Avaliado')
+            .alias('classificacao_nps')
     )
 )
 
