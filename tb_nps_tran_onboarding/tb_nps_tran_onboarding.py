@@ -34,16 +34,16 @@ df_nps_tran_onboarding = (
     .select(
         F.col("Cod Cliente").alias("cd_cliente"),
         F.col("Data de resposta").alias("dt_resposta"),
-        F.col("Em uma escala de 0 a 10, quanto você recomenda o Onboarding da TOTVS para um amigo ou colega?.").alias("nota_recomendacao_onboarding"),
-        F.col("Em uma escala de 0 a 10, o quanto você acredita que o atendimento CS Onboarding ajudou no início da sua trajetória com a TOTVS?").alias("nota_ajuda_cs_onboarding"),
-        F.col("- Duração do tempo na realização da reunião de Onboarding;").alias("duracao_reuniao_onboarding"),
-        F.col("- Clareza no acesso aos canais de comunicação da TOTVS;").alias("clareza_canais_comunicacao"),
-        F.col("- Clareza nas informações em geral transmitidas pelo CS que lhe atendeu no Onboarding;").alias("clareza_informacoes_cs"),
-        F.col("- Expectativas atendidas no Onboarding da TOTVS.").alias("expec_atend_onb"),
-        F.when(F.col('- Expectativas atendidas no Onboarding da TOTVS.').isNull(), 'Não Avaliado')
-            .when(F.col('- Expectativas atendidas no Onboarding da TOTVS.') <= 6, 'Detrator')
-            .when((F.col('- Expectativas atendidas no Onboarding da TOTVS.') >= 7) & (F.col('- Expectativas atendidas no Onboarding da TOTVS.') <= 8), 'Neutro')
-            .when(F.col('- Expectativas atendidas no Onboarding da TOTVS.') >= 9, 'Promotor')
+        F.col("`Em uma escala de 0 a 10, quanto você recomenda o Onboarding da TOTVS para um amigo ou colega?.`").alias("nota_recomendacao_onboarding"),
+        F.col("`Em uma escala de 0 a 10, o quanto você acredita que o atendimento CS Onboarding ajudou no início da sua trajetória com a TOTVS?`").alias("nota_ajuda_cs_onboarding"),
+        F.col("`- Duração do tempo na realização da reunião de Onboarding;`").alias("duracao_reuniao_onboarding"),
+        F.col("`- Clareza no acesso aos canais de comunicação da TOTVS;`").alias("clareza_canais_comunicacao"),
+        F.col("`- Clareza nas informações em geral transmitidas pelo CS que lhe atendeu no Onboarding;`").alias("clareza_informacoes_cs"),
+        F.col("`- Expectativas atendidas no Onboarding da TOTVS.`").alias("expec_atend_onb"),
+        F.when(F.col("`- Expectativas atendidas no Onboarding da TOTVS.`").isNull(), 'Não Avaliado')
+            .when(F.col("`- Expectativas atendidas no Onboarding da TOTVS.`") <= 6, 'Detrator')
+            .when((F.col("`- Expectativas atendidas no Onboarding da TOTVS.`") >= 7) & (F.col("`- Expectativas atendidas no Onboarding da TOTVS.`") <= 8), 'Neutro')
+            .when(F.col("`- Expectativas atendidas no Onboarding da TOTVS.`") >= 9, 'Promotor')
             .otherwise('Não Avaliado')
             .alias('classificacao_nps')
     )
