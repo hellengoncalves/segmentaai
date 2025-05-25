@@ -27,19 +27,17 @@ df_contratos = (
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
     .csv("s3a://segmentaai/dados_clientes.csv")
-    .filter(
-        (F.col('CD_CLIENTE').isNotNull())
-    )
+    .filter(F.col('CD_CLIENTE').isNotNull())
     .select(
         F.col("CD_CLIENTE").alias("cd_cliente"),
-        F.coalesce(F.col("DS_PROD"), '-').alias("produto"),
-        F.coalesce(F.col("DS_LIN_REC"), '-').alias("linha_receita"),
-        F.coalesce(F.col("MARCA_TOTVS"), '-').alias("marca_totvs"),
-        F.coalesce(F.col("MODAL_COMERC"), '-').alias("modalidade_comercial"),
-        F.coalesce(F.col("PERIODICIDADE"), '-').alias("periodicidade"),
-        F.coalesce(F.col("SITUACAO_CONTRATO"), '-').alias("situacao_contrato"),
+        F.coalesce(F.col("DS_PROD"), F.lit('-')).alias("produto"),
+        F.coalesce(F.col("DS_LIN_REC"), F.lit('-')).alias("linha_receita"),
+        F.coalesce(F.col("MARCA_TOTVS"), F.lit('-')).alias("marca_totvs"),
+        F.coalesce(F.col("MODAL_COMERC"), F.lit('-')).alias("modalidade_comercial"),
+        F.coalesce(F.col("PERIODICIDADE"), F.lit('-')).alias("periodicidade"),
+        F.coalesce(F.col("SITUACAO_CONTRATO"), F.lit('-')).alias("situacao_contrato"),
         F.coalesce(F.col("VL_TOTAL_CONTRATO"), F.lit(0)).alias("valor_total_contrato"),
-        F.coalesce(F.col("DT_ASSINATURA_CONTRATO"), '1900-01-01').alias("data_assinatura_contrato")
+        F.coalesce(F.col("DT_ASSINATURA_CONTRATO"), F.lit('1900-01-01')).alias("data_assinatura_contrato")
     )
 )
 
