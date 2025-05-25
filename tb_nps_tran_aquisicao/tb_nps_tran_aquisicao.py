@@ -29,16 +29,16 @@ df_nps_tran_aquisicao = (
     .option("encoding", "ISO-8859-1")
     .csv("s3a://segmentaai/nps_transacional_aquisicao.csv")
     .filter(
-        (F.col('Cód. Cliente').isNotNull())
+        F.col("`Cód. Cliente`").isNotNull()
     )
     .select(
-        F.col("Cód. Cliente").alias("cd_cliente"),
+        F.col("`Cód. Cliente`").alias("cd_cliente"),
         F.col("Data da Resposta").alias("dt_resposta"),
         F.col("Nota NPS").alias("nota_nps"),
-        F.when(F.col('Nota NPS').isNull(), 'Não Avaliado')
-            .when(F.col('Nota NPS') <= 6, 'Detrator')
-            .when((F.col('Nota NPS') >= 7) & (F.col('Nota NPS') <= 8), 'Neutro')
-            .when(F.col('Nota NPS') >= 9, 'Promotor')
+        F.when(F.col("Nota NPS").isNull(), 'Não Avaliado')
+            .when(F.col("Nota NPS") <= 6, 'Detrator')
+            .when((F.col("Nota NPS") >= 7) & (F.col("Nota NPS") <= 8), 'Neutro')
+            .when(F.col("Nota NPS") >= 9, 'Promotor')
             .otherwise('Não Avaliado')
             .alias('classificacao_nps'),
         F.col("Nota Agilidade").alias("nota_agilidade"),
