@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from airflow.hooks.base import BaseHook
+from pyspark.sql.window import Window
 
 # 1. Sessão Spark
 
