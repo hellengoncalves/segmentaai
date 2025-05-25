@@ -165,7 +165,12 @@ oracle_properties = {
 }
 
 # 4. Escrita Final
-df_consolidado.write \
-    .jdbc(url=oracle_url, table="TB_CLIENTES", mode="overwrite", properties=oracle_properties)
+df_consolidado.write.jdbc(
+    url=oracle_url,
+    table="TB_CLIENTES",
+    mode="overwrite",
+    properties=oracle_properties,
+    truncate=True
+)
 
 spark.stop()
