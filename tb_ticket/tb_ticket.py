@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
-from pyspark.sql.window import Window
 from airflow.hooks.base import BaseHook
 
 # 1. Sessão Spark
@@ -19,6 +18,7 @@ spark = SparkSession.builder \
     .config("spark.jars", "/home/hellen/spark/jars/hadoop-aws-3.3.4.jar,/home/hellen/spark/jars/aws-java-sdk-bundle-1.12.489.jar,/home/hellen/spark/jars/ojdbc8.jar") \
     .getOrCreate()
 
+
 # 2. ETL
 
 df_tickets = (
@@ -27,7 +27,7 @@ df_tickets = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/tickets.csv")
+    .csv("s3a://segmentaai/tickets.csv")
     .filter(F.col('CODIGO_ORGANIZACAO').isNotNull())
     .select(
         F.col("CODIGO_ORGANIZACAO").alias("cd_cliente"),
