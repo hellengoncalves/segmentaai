@@ -21,17 +21,17 @@ spark = SparkSession.builder \
 
 # 2. ETL
 
-df1 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_1.csv")
-df2 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_2.csv")
-df3 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_3.csv")
-df4 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_4.csv")
-df5 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_5.csv")
-df6 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_6.csv")
-df7 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_7.csv")
-df8 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_8.csv")
-df9 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_9.csv")
-df10 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_10.csv")
-df11 = spark.read.option("header", "true").option("delimiter", ";").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_11.csv")
+df1 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_1.csv")
+df2 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_2.csv")
+df3 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_3.csv")
+df4 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_4.csv")
+df5 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_5.csv")
+df6 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_6.csv")
+df7 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_7.csv")
+df8 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_8.csv")
+df9 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_9.csv")
+df10 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_10.csv")
+df11 = spark.read.option("header", "true").option("delimiter", ",").option("inferSchema", "true").option("encoding", "UTF-8").csv("s3a://segmentaai/telemetria_11.csv")
 
 df_uniao = (
     df1
