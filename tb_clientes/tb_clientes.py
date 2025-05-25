@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
-from pyspark.sql.window import Window
 from airflow.hooks.base import BaseHook
 
 # 1. Sessão Spark
@@ -27,7 +26,7 @@ df_base_clientes = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/clientes_desde.csv")
+    .csv("s3a://segmentaai/clientes_desde.csv")
     .filter(F.col('CLIENTE').isNotNull())
     .select(
         F.col('CLIENTE').alias('cd_cliente'),
@@ -41,7 +40,7 @@ df_contratacoes_12m = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/contratacoes_ultimos_12_meses.csv")
+    .csv("s3a://segmentaai/contratacoes_ultimos_12_meses.csv")
     .filter(F.col('CD_CLIENTE').isNotNull())
     .select(
         F.col('CD_CLIENTE').alias('cd_cliente'),
@@ -58,7 +57,7 @@ df_dados_gerais = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/dados_clientes.csv")
+    .csv("s3a://segmentaai/dados_clientes.csv")
     .filter(
         (F.col('CD_CLIENTE').isNotNull()) &
         (F.col('CIDADE').isNotNull()) &
@@ -83,7 +82,7 @@ df_dados_gerais_filtro = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/dados_clientes.csv")
+    .csv("s3a://segmentaai/dados_clientes.csv")
     .filter(
         (F.col('CD_CLIENTE').isNotNull()) &
         (F.col('CIDADE').isNotNull()) &
@@ -110,7 +109,7 @@ df_mrr = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/mrr.csv")
+    .csv("s3a://segmentaai/mrr.csv")
     .filter(
         (F.col('CLIENTE').isNotNull())
     )
@@ -141,8 +140,8 @@ df_consolidado = (
     .select(
         F.col('a.cd_cliente'),
         F.col('a.dt_abertura'),
-        F.coalesce(F.col('b.qt_contratacao_12m'), 0).alias('qt_contratacao_12m'),
-        F.coalesce(F.col('b.vl_contratacao_12m'), 0).alias('vl_contratacao_12m'),
+        F.coalesce(F.col('b.qt_contratacao_12m'), F.lit(0)).alias('qt_contratacao_12m'),
+        F.coalesce(F.col('b.vl_contratacao_12m'), F.lit(0)).alias('vl_contratacao_12m'),
         F.coalesce(F.col("c.nm_cidade"), F.lit('-')).alias("nm_cidade"),
         F.coalesce(F.col("c.ds_cnae"), F.lit('-')).alias("ds_cnae"),
         F.coalesce(F.col("c.ds_segmento"), F.lit('-')).alias("ds_segmento"),

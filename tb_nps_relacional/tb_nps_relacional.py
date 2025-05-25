@@ -26,7 +26,7 @@ df_nps_relacional = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/nps_relacional.csv")
+    .csv("s3a://segmentaai/nps_relacional.csv")
     .filter(
         (F.col('metadata_codcliente').isNotNull())
     )

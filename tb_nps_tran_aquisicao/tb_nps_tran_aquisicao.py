@@ -18,6 +18,7 @@ spark = SparkSession.builder \
     .config("spark.jars", "/home/hellen/spark/jars/hadoop-aws-3.3.4.jar,/home/hellen/spark/jars/aws-java-sdk-bundle-1.12.489.jar,/home/hellen/spark/jars/ojdbc8.jar") \
     .getOrCreate()
 
+
 # 2. ETL
 
 df_nps_tran_aquisicao = (
@@ -26,7 +27,7 @@ df_nps_tran_aquisicao = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/nps_transacional_aquisicao.csv")
+    .csv("s3a://segmentaai/nps_transacional_aquisicao.csv")
     .filter(
         (F.col('Cód. Cliente').isNotNull())
     )
