@@ -168,9 +168,8 @@ oracle_properties = {
 df_consolidado.write.jdbc(
     url=oracle_url,
     table="TB_CLIENTES",
-    mode="overwrite",
-    properties=oracle_properties,
-    truncate=True
+    mode="append",
+    properties=oracle_properties
 )
 
 spark.stop()
