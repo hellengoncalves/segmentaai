@@ -29,18 +29,18 @@ df_nps_tran_produto = (
     .option("encoding", "ISO-8859-1")
     .csv("s3a://segmentaai/nps_transacional_produto.csv")
     .filter(
-        (F.col('Cód. T').isNotNull())
+        F.col("`Cód. T`").isNotNull()
     )
     .select(
-        F.col("Cód. T").alias("cd_cliente"),
-        F.col("Data da Resposta").alias("dt_resposta"),
-        F.col("Linha de Produto").alias("ds_linha_produto"),
-        F.col("Nome do Produto").alias("nm_produto"),
-        F.col("Nota").alias("nota"),
-        F.when(F.col('Nota').isNull(), 'Não Avaliado')
-            .when(F.col('Nota') <= 6, 'Detrator')
-            .when((F.col('Nota') >= 7) & (F.col('Nota') <= 8), 'Neutro')
-            .when(F.col('Nota') >= 9, 'Promotor')
+        F.col("`Cód. T`").alias("cd_cliente"),
+        F.col("`Data da Resposta`").alias("dt_resposta"),
+        F.col("`Linha de Produto`").alias("ds_linha_produto"),
+        F.col("`Nome do Produto`").alias("nm_produto"),
+        F.col("`Nota`").alias("nota"),
+        F.when(F.col("`Nota`").isNull(), 'Não Avaliado')
+            .when(F.col("`Nota`") <= 6, 'Detrator')
+            .when((F.col("`Nota`") >= 7) & (F.col("`Nota`") <= 8), 'Neutro')
+            .when(F.col("`Nota`") >= 9, 'Promotor')
             .otherwise('Não Avaliado')
             .alias('classificacao_nps')
     )
