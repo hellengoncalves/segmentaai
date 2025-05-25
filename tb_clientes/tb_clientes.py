@@ -50,7 +50,7 @@ df_contratacoes_12m = (
     ).distinct()
 )
 
-window_spec = Window.partitionBy("CD_CLIENTE")
+window_spec = Window.partitionBy("CD_CLIENTE").orderBy(F.col("vl_faixa_faturamento").desc())
 
 df_dados_gerais = (
     spark.read
