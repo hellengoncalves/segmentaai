@@ -30,7 +30,7 @@ df_transacoes = (
     )
     .select(
         F.col("NR_PROPOSTA").alias("id_proposta"),
-        F.col("ITEM_PROPOSTA").alias("id_item_proposta"),
+        F.col("ITEM_PROPOSTA").cast('string').alias("id_item_proposta"),
         F.col("DT_UPLOAD").alias("dt_upload"),
         F.col("HOSPEDAGEM").alias("ds_hospedagem"),
         F.col("CD_CLI").alias("cd_cliente"),
