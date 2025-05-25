@@ -26,7 +26,7 @@ df_contratos = (
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
-    .csv("s3://segmentaai/dados_clientes.csv")
+    .csv("s3a://segmentaai/dados_clientes.csv")
     .filter(
         (F.col('CD_CLIENTE').isNotNull())
     )
