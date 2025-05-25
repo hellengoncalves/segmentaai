@@ -141,16 +141,16 @@ df_consolidado = (
     .select(
         F.col('a.cd_cliente'),
         F.col('a.dt_abertura'),
-        F.coalesce(F.col('b.qt_contratacao_12m'), F.lit(0)).alias('qt_contratacao_12m'),
-        F.coalesce(F.col('b.vl_contratacao_12m'), F.lit(0)).alias('vl_contratacao_12m'),
+        F.coalesce(F.col('b.qt_contratacao_12m'), F.lit(0)).cast('int').alias('qt_contratacao_12m'),
+        F.coalesce(F.col('b.vl_contratacao_12m'), F.lit(0)).cast('double').alias('vl_contratacao_12m'),
         F.coalesce(F.col("c.nm_cidade"), F.lit('-')).alias("nm_cidade"),
         F.coalesce(F.col("c.ds_cnae"), F.lit('-')).alias("ds_cnae"),
         F.coalesce(F.col("c.ds_segmento"), F.lit('-')).alias("ds_segmento"),
         F.coalesce(F.col("c.ds_subsegmento"), F.lit('-')).alias("ds_subsegmento"),
         F.coalesce(F.col("c.vl_faixa_faturamento"), F.lit('-')).alias("vl_faixa_faturamento"),
-        F.coalesce(F.col("c.nm_pais"), F.lit('-')).alias("id_pais"),
+        F.coalesce(F.col("c.nm_pais"), F.lit(1000)).cast('int').alias("id_pais"),
         F.coalesce(F.col("c.nm_uf"), F.lit('-')).alias("nm_uf"),
-        F.coalesce(F.col('d.vl_mrr_12m'), F.lit(0)).alias('vl_mrr_12m')
+        F.coalesce(F.col('d.vl_mrr_12m'), F.lit(0)).cast('double').alias('vl_mrr_12m')
     ).distinct()
 )
 
