@@ -26,7 +26,7 @@ df_nps_tran_onboarding = (
     .option("header", "true") 
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
-    .option("encoding", "UTF-8")
+    .option("encoding", "ISO-8859-1")
     .csv("s3a://segmentaai/nps_transacional_onboarding.csv")
     .filter(
         (F.col('Cod Cliente').isNotNull())
