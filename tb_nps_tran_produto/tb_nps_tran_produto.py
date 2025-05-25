@@ -26,9 +26,8 @@ df_nps_tran_produto = (
     .option("header", "true") 
     .option("delimiter", ";") 
     .option("inferSchema", "true") 
-    .option("encoding", "UTF-8")
+    .option("encoding", "ISO-8859-1")
     .csv("s3a://segmentaai/nps_transacional_produto.csv")
-    .withColumnRenamed("C�d. T", "Cód. T")
     .filter(
         (F.col('Cód. T').isNotNull())
     )
