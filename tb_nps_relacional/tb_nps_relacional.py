@@ -44,7 +44,7 @@ df_nps_relacional = (
         F.col("Nota_SupTec_Atendimento").alias("nota_suporte_atendimento"),
         F.col("Nota_Comercial").alias("nota_comercial"),
         F.col("Nota_Custos").alias("nota_custos"),
-        F.col("Nota_AdmFin_Atendimento").alias("nota_adm_financeiro_atendimento"),
+        F.col("Nota_AdmFin_Atendimento").alias("nota_adm_fin_atend"),
         F.col("Nota_Software").alias("nota_software"),
         F.col("Nota_Software_Atualizacao").alias("nota_software_atualizacao")
     )
