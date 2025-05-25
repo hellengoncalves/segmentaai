@@ -28,6 +28,7 @@ df_nps_tran_aquisicao = (
     .option("inferSchema", "true") 
     .option("encoding", "UTF-8")
     .csv("s3a://segmentaai/nps_transacional_aquisicao.csv")
+    .withColumnRenamed("C�d. Cliente", "Cód. Cliente")
     .filter(
         (F.col('Cód. Cliente').isNotNull())
     )
